@@ -5,7 +5,7 @@ services:
     image: postgres
     container_name: pg_server_api0121
     ports:
-      - '5550:5432'
+      - '5173:5432'
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
@@ -28,7 +28,7 @@ services:
     volumes:
       - ./data/pgadmin:/tmp/.pgadmin
     ports:
-      - "${PGADMIN_PORT:-5051}:80"
+      - "${PGADMIN_PORT:-5173}:80"
     networks:
       - postgres
     restart: unless-stopped
