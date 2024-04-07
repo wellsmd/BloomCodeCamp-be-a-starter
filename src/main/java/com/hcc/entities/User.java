@@ -30,6 +30,40 @@ public class User implements UserDetails {
         this.password = password;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDate getCohortStartDate() {
+        return cohortStartDate;
+    }
+
+    public void setCohortStartDate(LocalDate cohortStartDate) {
+        this.cohortStartDate = cohortStartDate;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -57,37 +91,4 @@ public class User implements UserDetails {
         return roles;
     }
 
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public LocalDate getCohortStartDate() {
-        return cohortStartDate;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setCohortStartDate(LocalDate cohortStartDate) {
-        this.cohortStartDate = cohortStartDate;
-    }
 }
