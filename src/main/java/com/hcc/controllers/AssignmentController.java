@@ -4,6 +4,7 @@ import com.hcc.dto.AssignmentResponseDto;
 import com.hcc.entities.Assignment;
 import com.hcc.entities.User;
 import com.hcc.services.AssignmentService;
+import com.hcc.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -17,6 +18,9 @@ public class AssignmentController {
 
     @Autowired
     AssignmentService assignmentService;
+
+    @Autowired
+    UserService userService;
 
     @GetMapping("")
     public ResponseEntity<?> getAssignmentsByUser(@AuthenticationPrincipal User user) {
@@ -40,7 +44,7 @@ public class AssignmentController {
                                               @AuthenticationPrincipal User user) {
         // Other things need to happen
         Assignment updatedAssignment = assignmentService.updateAssignment(assignment);
-        return ResponseEntity.ok(assignmentService.updateAssignment(updatedAssignment));
+        return ResponseEntity.ok(updatedAssignment);
     }
 
 }
