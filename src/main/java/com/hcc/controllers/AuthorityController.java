@@ -27,17 +27,18 @@ public class AuthorityController {
     @PostMapping ("/login")
     public ResponseEntity<?> login(@RequestBody AuthCredentialRequest request) {
         try {
-            Authentication authenticate  = authenticationManager
+            Authentication authenticate = authenticationManager
                     .authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
             User user = (User) authenticate.getPrincipal();
             user.setPassword(null);
+            String token = jwtUtil.generateToken(user);
 
             return ResponseEntity.ok()
                     .header(
                             HttpHeaders.AUTHORIZATION,
-                            jwtUtil.generateToken(user)
+                            token
                     )
-                    .body(user.getUsername());
+                    .body(token);
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
@@ -56,5 +57,4 @@ public class AuthorityController {
             return ResponseEntity.ok(false);
         }
     }
-
 }

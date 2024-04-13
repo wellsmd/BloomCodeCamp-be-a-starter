@@ -21,33 +21,37 @@ public class DataLoader implements CommandLineRunner {
     @Autowired
     AuthorityRepository authRepo;
 
+//    @Autowired
+//    AssignmentService assignmentService;
+
     @Override
     public void run(String... args) throws Exception {
         loadUserData();
         loadAuthorityData();
+//        loadAssignmentData();
     }
 
     private void loadUserData() {
         if (userRepo.count() == 0) {
             PasswordEncoder pwencoder = new BCryptPasswordEncoder();
             String pw = pwencoder.encode("verysecurepassword");
-            User john = new User(LocalDate.now(), "john", pw);
-            userRepo.save(john);
-            User paul = new User(LocalDate.now(), "paul", pw);
-            userRepo.save(paul);
-            User george = new User(LocalDate.now(), "george", pw);
-            userRepo.save(george);
-            User ringo = new User(LocalDate.now(), "ringo", pw);
-            userRepo.save(ringo);
+            User tweedledee = new User(LocalDate.now(), "tweedledee", pw);
+            userRepo.save(tweedledee);
+            User tweedledum = new User(LocalDate.now(), "tweedledum", pw);
+            userRepo.save(tweedledum);
         }
     }
 
     private void loadAuthorityData() {
         if (authRepo.count() == 0) {
-            Authority learner = new Authority("ROLE_LEARNER", userRepo.findByUsername("john").get());
+            Authority learner = new Authority("ROLE_LEARNER", userRepo.findByUsername("tweedledee").get());
             authRepo.save(learner);
-            Authority reviewer = new Authority("ROLE_REVIEWER", userRepo.findByUsername("ringo").get());
+            Authority reviewer = new Authority("ROLE_REVIEWER", userRepo.findByUsername("tweedledum").get());
             authRepo.save(reviewer);
         }
     }
+
+//    private void loadAssignmentData() {
+//        assignmentService.createAssignment(userRepo.findByUsername("tweedledee").get());
+//    }
 }

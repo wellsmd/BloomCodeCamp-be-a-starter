@@ -10,6 +10,7 @@ public class Authority implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
+    @Column(name = "authority")
     private String authority;
     @ManyToOne
     private User user;
@@ -34,6 +35,7 @@ public class Authority implements GrantedAuthority {
         Id = id;
     }
 
+    @Override
     public String getAuthority() {
         return authority;
     }

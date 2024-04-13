@@ -7,14 +7,21 @@ import javax.persistence.*;
 public class Assignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
+    @Column(name = "status")
     private String status;
+    @Column(name = "number")
     private Integer number;
+    @Column(name = "github_url")
     private String githubUrl;
+    @Column(name = "branch")
     private String branch;
+    @Column(name = "review_video_url")
     private String reviewVideoUrl;
-    @ManyToOne
+    @ManyToOne(optional = false)
     private User user;
+    @ManyToOne(optional = true)
+    private User reviewer;
 
     public Assignment() {
     }
@@ -29,11 +36,11 @@ public class Assignment {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getStatus() {
@@ -82,5 +89,13 @@ public class Assignment {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public User getReviewer() {
+        return reviewer;
+    }
+
+    public void setReviewer(User reviewer) {
+        this.reviewer = reviewer;
     }
 }

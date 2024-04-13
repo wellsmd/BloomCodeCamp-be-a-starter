@@ -4,10 +4,6 @@ import com.hcc.entities.Assignment;
 import com.hcc.enums.AssignmentEnum;
 import com.hcc.enums.AssignmentStatusEnum;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class AssignmentResponseDto {
     private Assignment assignment;
     private AssignmentEnum[] assignmentEnums = AssignmentEnum.values();
