@@ -21,17 +21,14 @@ public class DataLoader implements CommandLineRunner {
     @Autowired
     AuthorityRepository authRepo;
 
-//    @Autowired
-//    AssignmentService assignmentService;
-
     @Override
     public void run(String... args) throws Exception {
         loadUserData();
         loadAuthorityData();
-//        loadAssignmentData();
     }
 
     private void loadUserData() {
+        System.out.println("UserRepo count is: " + userRepo.count());
         if (userRepo.count() == 0) {
             PasswordEncoder pwencoder = new BCryptPasswordEncoder();
             String pw = pwencoder.encode("verysecurepassword");
@@ -43,6 +40,7 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void loadAuthorityData() {
+        System.out.println("AuthRepo count is: " + authRepo.count());
         if (authRepo.count() == 0) {
             Authority learner = new Authority("ROLE_LEARNER", userRepo.findByUsername("tweedledee").get());
             authRepo.save(learner);
@@ -51,7 +49,4 @@ public class DataLoader implements CommandLineRunner {
         }
     }
 
-//    private void loadAssignmentData() {
-//        assignmentService.createAssignment(userRepo.findByUsername("tweedledee").get());
-//    }
 }

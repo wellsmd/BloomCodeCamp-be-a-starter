@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/assignments")
 public class AssignmentController {
 
@@ -23,11 +24,13 @@ public class AssignmentController {
     @Autowired
     UserService userService;
 
-    @GetMapping("")
+    @CrossOrigin("*")
+    @GetMapping
     public ResponseEntity<?> getAssignmentsByUser(@AuthenticationPrincipal User user) {
         return ResponseEntity.ok(assignmentService.findByUser(user));
     }
 
+    @CrossOrigin("*")
     @GetMapping("/{id}")
     public ResponseEntity<?> getAssignmentById(@PathVariable Long id, @AuthenticationPrincipal User user) throws ResourceNotFoundException {
         Optional<Assignment> assignmentOpt = assignmentService.findById(id);
@@ -39,7 +42,7 @@ public class AssignmentController {
         // return ResponseEntity.ok(new AssignmentResponseDto(assignmentOpt.orElse(new Assignment())));
     }
 
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<?> createAssignment(@AuthenticationPrincipal User user) {
         return ResponseEntity.ok(assignmentService.createAssignment(user));
     }

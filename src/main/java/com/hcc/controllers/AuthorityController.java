@@ -57,4 +57,27 @@ public class AuthorityController {
             return ResponseEntity.ok(false);
         }
     }
+
+//    @CrossOrigin("*")
+//    @PostMapping("/sign-up")
+//    public ResponseEntity<?> signup(@RequestBody User user) throws Exception {
+//        Authentication authentication;
+//
+//        try {
+//            String encodedPassword = customPasswordEncoder.getPasswordEncoder().encode(user.getPassword());
+//            user.setPassword(encodedPassword);
+//            userRepo.save(user);
+//            authentication = authenticationManager.authenticate(
+//                    new UsernamePasswordAuthenticationToken(user.getUsername(), encodedPassword, user.getAuthorities()));
+//            SecurityContextHolder.getContext().setAuthentication(authentication);
+//            User newUser = (User) authentication.getPrincipal();
+//            newUser.setPassword(null);
+//            String passwordToken = jwtUtil.generateToken(newUser);
+//            return ResponseEntity.ok()
+//                    .header(HttpHeaders.AUTHORIZATION, passwordToken)
+//                    .body(newUser.getUsername());
+//        } catch (BadCredentialsException exception) {
+//            throw new Exception("Bogus credentials, dude.");
+//        }
+//    }
 }
